@@ -27,7 +27,6 @@ class TasksController < ApplicationController
 
     if @task.update(task_params)
       flash[:notice] = 'Task updated successfully'
-
       redirect_to '/tasks'
     else
       render 'edit'
