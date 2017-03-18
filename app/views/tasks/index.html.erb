@@ -1,8 +1,9 @@
-<% if Task.all.any? %>
-  <% Task.all.each do |task| %>
+<% if @tasks.any? %>
+  <% @tasks.each do |task| %>
     <h2><%= task.person %></h2>
     <h2><%= task.description %></h2>
-
+    <%= link_to 'Edit', edit_task_path(task) %>
+    <%= link_to 'Delete', task_path(task), method: :delete %>
   <% end %>
 <% else %>
   <h1>No tasks yet</h1>
