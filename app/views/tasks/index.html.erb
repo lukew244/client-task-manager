@@ -1,12 +1,33 @@
+<h1>Task list</h1>
+
 <% if @tasks.any? %>
   <% @tasks.each do |task| %>
-    <h2><%= task.person %></h2>
-    <h2><%= task.description %></h2>
-    <%= link_to 'Edit', edit_task_path(task) %>
-    <%= link_to 'Delete', task_path(task), method: :delete %>
+    <div class="table-responsive">
+      <table class="display">
+        <thead>
+          <tr class="table-row">
+            <th>Date of request</th>
+            <th>Made by</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <td><%= task.created_at %></td>
+          <td><%= task.person %></td>
+          <td><%= task.description %></td>
+          <td>nil</td>
+          <td><%= link_to 'Edit', edit_task_path(task) %>
+              <%= link_to 'Delete', task_path(task), method: :delete %></td>
+        </tbody>
+      </table>
+    </div>
   <% end %>
 <% else %>
-  <h1>No tasks yet</h1>
+  <h3>No tasks have been added yet.</h3>
 <% end %>
 
 <%= link_to "Add a task", new_task_path %>
