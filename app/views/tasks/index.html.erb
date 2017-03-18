@@ -1,0 +1,11 @@
+<% if Task.all.any? %>
+  <% Task.all.each do |task| %>
+    <h2><%= task.person %></h2>
+    <h2><%= task.description %></h2>
+
+  <% end %>
+<% else %>
+  <h1>No tasks yet</h1>
+<% end %>
+
+<%= link_to "Add a task", new_task_path %>
