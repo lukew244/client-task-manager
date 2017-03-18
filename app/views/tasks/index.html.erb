@@ -1,33 +1,39 @@
-<h1>Task list</h1>
+  <div class="row">
 
-<% if @tasks.any? %>
-  <% @tasks.each do |task| %>
-    <div class="table-responsive">
-      <table class="display">
-        <thead>
-          <tr class="table-row">
-            <th>Date of request</th>
-            <th>Made by</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+      <h1>Task list</h1>
 
-        <tbody>
+      <% if @tasks.any? %>
+          <div class="table-responsive">
+            <table class="table table-striped display">
+              <thead>
+                <tr class="table-row">
+                  <th>Date of request</th>
+                  <th>Made by</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
 
-          <td><%= task.created_at %></td>
-          <td><%= task.person %></td>
-          <td><%= task.description %></td>
-          <td>nil</td>
-          <td><%= link_to 'Edit', edit_task_path(task) %>
-              <%= link_to 'Delete', task_path(task), method: :delete %></td>
-        </tbody>
-      </table>
+              <tbody>
+                <% @tasks.each do |task| %>
+                  <tr class="table-row">
+                    <td><%= task.created_at %></td>
+                    <td><%= task.person %></td>
+                    <td><%= task.description %></td>
+                    <td>nil</td>
+                    <td><%= link_to 'Edit', edit_task_path(task) %>
+                        <%= link_to 'Delete', task_path(task), method: :delete %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+      <% else %>
+        <h3>No tasks have been added yet.</h3>
+      <% end %>
+
+      <%= link_to "Add a task", new_task_path %>
     </div>
-  <% end %>
-<% else %>
-  <h3>No tasks have been added yet.</h3>
-<% end %>
 
-<%= link_to "Add a task", new_task_path %>
+</div>
