@@ -1,0 +1,17 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <div class="container-fluid">
+   <div class="navbar-header">
+     <%= link_to "Task Manager", root_path, class: "navbar-brand" %>
+   </div>
+   <ul class="nav navbar-nav navbar-right">
+    <% if user_signed_in? %>
+      <% if  %>
+        <li><%= link_to "Manage users", users_path %></li>
+      <% end %>
+      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+     <% else %>
+       <li><%= link_to "Sign in", new_user_session_path %></li>
+     <% end %>
+   </ul>
+ </div>
+</nav>
