@@ -39,7 +39,7 @@ def destroy
   @task = Task.find(params[:id])
   @task.destroy
   flash[:notice] = 'Task deleted successfully'
-  redirect_to :back
+  redirect_back(fallback_location: '/tasks')
 end
 
 private
