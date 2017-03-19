@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :all_companies, only: [:new, :create, :edit, :update]
 
   def index
     @tasks = Task.where(company: current_user.company)
@@ -8,14 +9,11 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @all_companies = all_companies
   end
 
   def create
     @task = current_user.tasks.new(task_params)
     @task.company ||= current_user.company
-    @all_companies = all_companies
-  
     if @task.save
       redirect_to '/tasks'
     else
@@ -46,7 +44,7 @@ end
 
 private
   def all_companies
-    (User.all.collect { |u| u.company }).uniq
+    @all_companies = (User.all.collect { |u| u.company }).uniq
   end
 
   def task_params

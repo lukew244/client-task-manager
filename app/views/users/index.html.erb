@@ -8,6 +8,8 @@
             <tr class="table-row">
               <th>Company</th>
               <th>Email</th>
+              <th>Open tasks</th>
+              <th>Complete tasks</th>
               <th>Admin?</th>
             </tr>
           </thead>
@@ -17,6 +19,8 @@
               <tr class="table-row">
                 <td> <%= user.company %></td>
                 <td> <%= user.email %></td>
+                <td> <%= user.open_tasks_for_company %></td>
+                <td> <%= user.complete_tasks_for_company %></td>
                 <td> <%= user.admin %></td>
               </tr>
             <% end %>
