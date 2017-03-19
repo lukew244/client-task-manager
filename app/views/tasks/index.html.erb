@@ -6,8 +6,8 @@
         <table class="table table-striped display">
           <thead>
             <tr class="table-row">
-              <th>Date of request</th>
-              <th>Made by</th>
+              <th>Request created</th>
+              <th>Author</th>
               <th>Description</th>
               <th>Status</th>
               <th>Actions</th>
@@ -17,10 +17,10 @@
           <tbody>
             <% @tasks.each do |task| %>
               <tr class="table-row">
-                <td><%= task.created_at %></td>
+                <td><%= task.created_at.strftime("%Y-%m-%d %H:%M") %></td>
                 <td><%= task.person %></td>
                 <td><%= task.description %></td>
-                <td>None yet</td>
+                <td><%= task.status %></td>
                 <td><%= link_to 'Edit', edit_task_path(task) %>
                     <%= link_to 'Delete', task_path(task), method: :delete %></td>
               </tr>

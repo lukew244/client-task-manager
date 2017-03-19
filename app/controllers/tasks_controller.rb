@@ -8,11 +8,14 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @all_companies = all_companies
   end
 
   def create
     @task = current_user.tasks.new(task_params)
     @task.company ||= current_user.company
+    @all_companies = all_companies
+  
     if @task.save
       redirect_to '/tasks'
     else
@@ -38,13 +41,16 @@ def destroy
   @task = Task.find(params[:id])
   @task.destroy
   flash[:notice] = 'Task deleted successfully'
-  redirect_to '/tasks'
+  redirect_to :back
 end
 
 private
+  def all_companies
+    (User.all.collect { |u| u.company }).uniq
+  end
 
   def task_params
-    params.require(:task).permit(:person, :description, :company)
+    params.require(:task).permit(:person, :description, :company, :status)
   end
 
 end

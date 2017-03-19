@@ -25,9 +25,14 @@
   </p>
 
   <p>
+    <%= f.label :status %><br />
+    <%= f.select :status, Status::ALL %>
+  </p>
+
+  <p>
   <% if current_user.admin %>
     <%= f.label :company %><br />
-    <%= f.text_field :company %>
+    <%= f.select :company, @all_companies %>
   <% end %>
   </p>
 
