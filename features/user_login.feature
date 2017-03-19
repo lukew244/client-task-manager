@@ -1,6 +1,5 @@
 Feature: User log in
 
-
   Scenario: An existing user can log in to their account
     Given I have an existing account
     When I go to the root path

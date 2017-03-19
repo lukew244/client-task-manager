@@ -1,6 +1,5 @@
 Feature: tasks
 
-  @wip
   Scenario: A logged in user can create and delete a task
     Given I have an existing account
     And I am logged in

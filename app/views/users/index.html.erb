@@ -3,7 +3,7 @@
 
   <% if @users.any? %>
       <div class="table-responsive">
-        <table class="table table-striped display">
+        <table class="table table-striped">
           <thead>
             <tr class="table-row">
               <th>Company</th>
@@ -29,6 +29,6 @@
       </div>
   <% end %>
 
-  <%= link_to "Add a user", new_user_path %>
+  <%= link_to "Add a user", new_user_path, class: "btn btn-primary" %>
 
 </div>
