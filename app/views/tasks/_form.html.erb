@@ -15,13 +15,20 @@
 <% end %>
 
   <p>
-    <%= f.label :person %><br>
+    <%= f.label :person %><br />
     <%= f.text_field :person %>
   </p>
 
   <p>
-    <%= f.label :description %><br>
+    <%= f.label :description %><br />
     <%= f.text_area :description %>
+  </p>
+
+  <p>
+  <% if current_user.admin %>
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  <% end %>
   </p>
 
   <p>

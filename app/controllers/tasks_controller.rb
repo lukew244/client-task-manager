@@ -11,7 +11,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
+    @task.company ||= current_user.company
     if @task.save
       redirect_to '/tasks'
     else
@@ -25,7 +26,6 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-
     if @task.update(task_params)
       flash[:notice] = 'Task updated successfully'
       redirect_to '/tasks'
@@ -44,7 +44,7 @@ end
 private
 
   def task_params
-    params.require(:task).permit(:person, :description)
+    params.require(:task).permit(:person, :description, :company)
   end
 
 end

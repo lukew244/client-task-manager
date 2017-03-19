@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = 'User created successfully'
-      redirect_to root_path
+      redirect_to users_path
     else
       flash[:notice] = 'User failed to create'
-      redirect_to root_path
+      redirect_to users_path
     end
   end
 
@@ -24,7 +24,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :company)
   end
 
 end

@@ -9,7 +9,7 @@
               <th>Date of request</th>
               <th>Made by</th>
               <th>Description</th>
-              <th>Status</th>
+              <th>Status (currently company)</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -20,7 +20,7 @@
                 <td><%= task.created_at %></td>
                 <td><%= task.person %></td>
                 <td><%= task.description %></td>
-                <td>nil</td>
+                <td><%= task.company %></td>
                 <td><%= link_to 'Edit', edit_task_path(task) %>
                     <%= link_to 'Delete', task_path(task), method: :delete %></td>
               </tr>
