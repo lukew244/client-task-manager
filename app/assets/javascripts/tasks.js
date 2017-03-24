@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var characterCounter = function() {
     var text_max = 500;
     $('#textarea_feedback').html(text_max + ' characters remaining');
 
@@ -8,4 +8,4 @@ $(document).ready(function() {
 
         $('#textarea_feedback').html(text_remaining + ' characters remaining');
     });
-});
+};

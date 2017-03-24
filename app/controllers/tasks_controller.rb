@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
     @task.company ||= current_user.company
     if @task.save
-      redirect_to '/tasks'
+      redirect_route
     else
       render 'new'
     end
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.update(task_params)
       flash[:notice] = 'Task updated successfully'
-      redirect_to '/tasks'
+      redirect_route
     else
       render 'edit'
     end
@@ -43,6 +43,14 @@ def destroy
 end
 
 private
+  def redirect_route
+    if current_user.admin
+      redirect_to admin_tasks_path
+    else
+    redirect_to '/tasks'
+    end
+  end
+
   def all_companies
     @all_companies = (User.all.collect { |u| u.company }).uniq
   end

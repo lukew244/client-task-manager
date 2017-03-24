@@ -12,7 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
 //= require tasks
 //= require data_table
+
+var ready;
+
+ready = function() {
+  characterCounter();
+};
+
+$(document).ready(ready);
+$(document).on('turbolinks:load ready', ready);
