@@ -1,6 +1,6 @@
 Feature: tasks
 
-  Scenario: A logged in user can create and delete a task
+  Scenario: A logged in user can create, update and delete a task
     Given I have an existing account
     And I am logged in
     When I go to the root path
@@ -13,6 +13,13 @@ Feature: tasks
     And I press the "Create task" button
     Then I should be on the "/" page
     And I should see "A relevant task"
+    When I click the "Edit" link
+    Then I should see "Update task"
+    When I fill in "task_person" with "A new name"
+    And I fill in "description-textarea" with "An update to the task"
+    And I press the "Create task" button
+    Then I should be on the "/" page
+    And I should see "An update to the task"
     When I click the "Delete" link
     Then I should see "Task deleted successfully"
     And I should not see "A relevant task"

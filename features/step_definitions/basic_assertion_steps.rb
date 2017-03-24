@@ -8,7 +8,6 @@ Then(/^I should see "([^"]*)"$/) do |text|
     sleep 0.1
     ticks += 1
   end
-
   page.should have_content(text)
 end
 

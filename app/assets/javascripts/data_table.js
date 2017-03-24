@@ -1,6 +1,6 @@
-$(document).ready(function() {
+var initDataTable = function() {
     $('table.display').DataTable({
       "info": false,
       "paging": false
     });
-});
+};

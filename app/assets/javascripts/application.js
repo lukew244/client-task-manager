@@ -21,6 +21,7 @@
 var ready;
 
 ready = function() {
+  initDataTable();
   characterCounter();
 };
 
