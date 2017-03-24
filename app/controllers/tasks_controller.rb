@@ -44,6 +44,13 @@ def destroy
   redirect_back(fallback_location: '/tasks')
 end
 
+def mark_complete
+  @task = Task.find(params[:id])
+  @task.update_attribute :status, Status::COMPLETE
+  redirect_back(fallback_location: '/tasks')
+
+end
+
 private
   def redirect_route
     if current_user.admin

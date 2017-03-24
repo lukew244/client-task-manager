@@ -5,6 +5,8 @@ class AdminController < ApplicationController
 
   def tasks_index
     @tasks = Task.all
+    @all_incomplete_tasks = @tasks.where.not(status: Status::COMPLETE)
+    @all_completed_tasks = @tasks.where(status: Status::COMPLETE)
   end
 
 private

@@ -17,14 +17,15 @@
           </thead>
 
           <tbody>
-            <% @tasks.where.not(status: Status::COMPLETE).each do |task| %>
+            <% @all_incomplete_tasks.each do |task| %>
               <tr class="table-row">
-                <td><%= task.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= task.created_at.strftime("%d-%m-%Y %H:%M") %></td>
                 <td><%= task.company %></td>
                 <td><%= task.person %></td>
                 <td><%= task.description %></td>
                 <td><%= task.status %></td>
-                <td><%= link_to 'Edit', edit_task_path(task) %>
+                <td><%= link_to 'Completed', mark_complete_task_path(task), method: "PUT" %> | <br />
+                    <%= link_to 'Edit', edit_task_path(task) %> |
                     <%= link_to 'Delete', task_path(task), method: :delete %></td>
               </tr>
             <% end %>
@@ -53,9 +54,9 @@
             </thead>
 
             <tbody>
-              <% @tasks.where(status: Status::COMPLETE).each do |task| %>
+              <% @all_completed_tasks.each do |task| %>
                 <tr class="table-row">
-                  <td><%= task.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                  <td><%= task.created_at.strftime("%d-%m-%Y %H:%M") %></td>
                   <td><%= task.company %></td>
                   <td><%= task.person %></td>
                   <td><%= task.description %></td>
