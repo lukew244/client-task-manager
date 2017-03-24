@@ -16,7 +16,7 @@
           </thead>
 
           <tbody>
-            <% @tasks.where.not(status: Status::COMPLETE).each do |task| %>
+            <% @incomplete_tasks.each do |task| %>
               <tr class="table-row">
                 <td><%= task.created_at.strftime("%Y-%m-%d %H:%M") %></td>
                 <td><%= task.person %></td>
@@ -36,33 +36,35 @@
       <br />
 
       <h3>Completed tasks</h3>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr class="table-row">
-                <th class="col-md-1">Request created</th>
-                <th class="col-md-1">Author</th>
-                <th class="col-md-8">Description</th>
-                <th class="col-md-1">Status</th>
-                <th class="col-md-1">Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @tasks.where(status: Status::COMPLETE).each do |task| %>
+        <% if @completed_tasks.any? %>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
                 <tr class="table-row">
-                  <td><%= task.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-                  <td><%= task.person %></td>
-                  <td><%= task.description %></td>
-                  <td><%= task.status %></td>
-                  <td><%= link_to 'Edit', edit_task_path(task) %>
-                      <%= link_to 'Delete', task_path(task), method: :delete %></td>
+                  <th class="col-md-1">Request created</th>
+                  <th class="col-md-1">Author</th>
+                  <th class="col-md-8">Description</th>
+                  <th class="col-md-1">Status</th>
+                  <th class="col-md-1">Actions</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-
+              </thead>
+              <tbody>
+                <% @completed_tasks.each do |task| %>
+                  <tr class="table-row">
+                    <td><%= task.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                    <td><%= task.person %></td>
+                    <td><%= task.description %></td>
+                    <td><%= task.status %></td>
+                    <td><%= link_to 'Edit', edit_task_path(task) %>
+                        <%= link_to 'Delete', task_path(task), method: :delete %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          No tasks have been completed yet.
+        <% end %>
   <% else %>
     <h3>No tasks have been added yet.</h3>
     <%= link_to "Add a task", new_task_path, class: "btn btn-primary" %>

@@ -10,8 +10,16 @@ Feature: admin features
     When I go to the root path
     And I click the "Manage users" link
     Then I should be on the "/users" page
-    And I should see "Test Company"
-    And I should see "Add a user"
+    When I click the "Add a user" link
+    And I fill in "user_email" with "client@example.com"
+    And I fill in "user_password" with "password"
+    And I fill in "user_password_confirmation" with "password"
+    And I fill in "user_company" with "Client Company"
+    And I press the "Create User" button
+    Then I should be on the "/users" page
+    And I should see "client@example.com"
+    And I should see "Client Company"
+
 
   Scenario: A logged in Admin user can create tasks on other accounts
     When I go to the root path

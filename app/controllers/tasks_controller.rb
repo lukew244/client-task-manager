@@ -4,6 +4,8 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.where(company: current_user.company)
+    @incomplete_tasks = @tasks.where.not(status: Status::COMPLETE)
+    @completed_tasks = @tasks.where(status: Status::COMPLETE)
   end
 
 
