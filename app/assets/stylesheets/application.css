@@ -21,3 +21,12 @@
 .container-fluid {
   width: 80%;
 }
+
+.page-content {
+  margin-top: 80px;
+}
+
+.alert {
+  position: absolute;
+  width: 80%;
+}

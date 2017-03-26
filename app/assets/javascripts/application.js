@@ -23,6 +23,7 @@ var ready;
 ready = function() {
   initDataTable();
   characterCounter();
+  $(document).on('page:change', $('.notice,.alert').fadeOut(3000));
 };
 
 $(document).ready(ready);
