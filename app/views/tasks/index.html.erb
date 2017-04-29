@@ -3,33 +3,40 @@
 
   <% if @tasks.any? %>
     <h3>Open tasks</h3>
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr class="table-row">
-              <th class="col-md-1">Request created</th>
-              <th class="col-md-1">Author</th>
-              <th class="col-md-8">Description</th>
-              <th class="col-md-1">Status</th>
-              <th class="col-md-1">Actions</th>
-            </tr>
-          </thead>
+      <% if @incomplete_tasks.any? %>
 
-          <tbody>
-            <% @incomplete_tasks.each do |task| %>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
               <tr class="table-row">
-                <td><%= task.created_at.strftime("%d-%m-%Y %H:%M") %></td>
-                <td><%= task.person %></td>
-                <td><%= task.description %></td>
-                <td><%= task.status %></td>
-                <td><%= link_to 'Completed', mark_complete_task_path(task), method: "PUT" %> | <br />
-                    <%= link_to 'Edit', edit_task_path(task) %> |
-                    <%= link_to 'Delete', task_path(task), method: :delete %></td>
+                <th class="col-md-1">Request created</th>
+                <th class="col-md-1">Author</th>
+                <th class="col-md-8">Description</th>
+                <th class="col-md-1">Status</th>
+                <th class="col-md-1">Actions</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody>
+              <% @incomplete_tasks.each do |task| %>
+                <tr class="table-row">
+                  <td><%= task.created_at.strftime("%d-%m-%Y %H:%M") %></td>
+                  <td><%= task.person %></td>
+                  <td><%= task.description %></td>
+                  <td><%= task.status %></td>
+                  <td><%= link_to 'Completed', mark_complete_task_path(task), method: "PUT" %> | <br />
+                      <%= link_to 'Edit', edit_task_path(task) %> |
+                      <%= link_to 'Delete', task_path(task), method: :delete %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        No tasks in progress.
+        <br />
+        <br />
+      <% end %>
 
       <%= link_to "Add a task", new_task_path, class: "btn btn-primary" %>
 
