@@ -12,8 +12,8 @@ class UsersController < ApplicationController
       flash[:notice] = 'User created successfully'
       redirect_to users_path
     else
-      flash[:notice] = 'User failed to create'
-      redirect_to users_path
+      flash[:notice] = "User failed to create: #{@user.errors.full_messages.join(', ')}"
+      redirect_back(fallback_location: users_path)
     end
   end
 
@@ -23,8 +23,8 @@ class UsersController < ApplicationController
       flash[:notice] = 'User deleted successfully'
       redirect_to users_path
     else
-      flash[:notice] = 'User could not be deleted'
-      redirect_to users_path
+      flash[:notice] = "User failed to delete: #{@user.errors.full_messages.join(', ')}"
+      redirect_back(fallback_location: users_path)
     end
   end
 
