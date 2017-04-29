@@ -17,6 +17,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = 'User deleted successfully'
+      redirect_to users_path
+    else
+      flash[:notice] = 'User could not be deleted'
+      redirect_to users_path
+    end
+  end
+
 private
 
   def authorise_admin

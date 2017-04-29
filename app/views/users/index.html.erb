@@ -11,6 +11,7 @@
               <th>Open tasks</th>
               <th>Complete tasks</th>
               <th>Admin?</th>
+              <th>Options</th>
             </tr>
           </thead>
 
@@ -22,6 +23,7 @@
                 <td> <%= user.open_tasks_for_company %></td>
                 <td> <%= user.complete_tasks_for_company %></td>
                 <td> <%= user.admin %></td>
+                <td><%= link_to 'Delete', user_path(user), method: :delete %></td>
               </tr>
             <% end %>
           </tbody>
